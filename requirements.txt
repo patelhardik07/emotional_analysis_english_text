@@ -6,8 +6,6 @@ numpy>=1.9.2
 requests==2.22.0
 Flask-Cors==3.0.10
 pandas
-pydantic
 tensorflow==2.0.0
-uvicorn
 h5py==2.10.0
 python-multipart
