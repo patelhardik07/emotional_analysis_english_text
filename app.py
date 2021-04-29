@@ -43,8 +43,8 @@ def predict():
     seq = tokenizer.texts_to_sequences(message)
     padded = pad_sequences(seq, maxlen=max_seq_len)
     predictions = loaded_model.predict(padded)
-    output=class_names[np.argmax(predictions, axis=1)]
-    res['prediction']=output
+    #output=class_names[np.argmax(predictions, axis=1)]
+    res['prediction']=predictions
     return jsonify(res)
 if __name__ == "__main__":
     app.run(port = 5000, debug=True)
