@@ -31,27 +31,21 @@ cors = CORS(app, resources={
 @app.route('/', methods=['POST'])
 #@crossdomain(origin='*')
 def predict():
-  # get data
-  data = request.get_json(force=True)
-  sent = data['comment']
-  res={}
-  message = clean_text(sent)
-  tokenizer = Tokenizer()
-  tokenizer.fit_on_texts(message)
-  seq = tokenizer.texts_to_sequences(message)
-  padded = pad_sequences(seq, maxlen=max_seq_len)
-  predictions = loaded_model.predict(padded)
-  output=class_names[np.argmax(predictions)]
-  res['prediction']=output
-  return jsonify(res)
-
-
-
+    
+    # get data
+    data = request.get_json(force=True)
+    sent = data['comment'][i]
+    res={}
+    res['after']=sent
+    #message = clean_text(sent)
+    #tokenizer = Tokenizer()
+    #tokenizer.fit_on_texts(message)
+    #seq = tokenizer.texts_to_sequences(message)
+    #padded = pad_sequences(seq, maxlen=max_seq_len)
+    #predictions = loaded_model.predict(padded)
+    #output=class_names[np.argmax(predictions)]
+    #res['prediction']=output
+    #return jsonify(res)
+    return jsonify(res)
 if __name__ == "__main__":
     app.run(port = 5000, debug=True)
-  
-  
-  
-  
-  
-  
