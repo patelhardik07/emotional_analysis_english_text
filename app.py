@@ -34,7 +34,7 @@ def predict():
     
     # get data
     data = request.get_json(force=True)
-    sent = data['comment'][i]
+    sent = data['comment']
     res={}
     res['after']=sent
     #message = clean_text(sent)
