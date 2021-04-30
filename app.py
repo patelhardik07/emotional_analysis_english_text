@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 import re
-loaded_model = tf.keras.models.load_model('biLSTM_w2v.h5')
+loaded_model = tf.keras.models.load_model('Lstm_english.h5')
 def clean_text(text):
   text = text.lower()
   new_text = re.sub('[^a-zA-z0-9\s]','',text)
@@ -19,7 +19,7 @@ embed_num_dims = 300
 
 max_seq_len = 500
 
-class_names = ['joy', 'fear', 'anger', 'sadness', 'neutral']
+class_names = ['Joy', 'Fear', 'Anger', 'Sadness', 'Neutral']
 
 data_train = pd.read_csv('data_train.csv', encoding='utf-8')
 data_test = pd.read_csv('data_test.csv', encoding='utf-8')
@@ -46,14 +46,14 @@ def predict():
       sent = data['comment'][i]
       cmt=sent
       message = clean_text(sent)
-      seq = tokenizer.texts_to_sequences(message)
+      seq = tokenizer.texts_to_sequences([message])
       padded = pad_sequences(seq, maxlen=max_seq_len)
       predictions = loaded_model.predict(padded)
-      pr=np.argmax(predictions[0])
+      pr=np.argmax(predictions)
       output=class_names[pr]
       res[i]={}
-      res[i]['comment']=cmt
-      res[i]['sentiment']=output
+      res[i]['Comment']=cmt
+      res[i]['Emotion']=output
     return jsonify(res)
 if __name__ == "__main__":
     app.run(port = 5000, debug=True)
