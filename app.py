@@ -20,6 +20,11 @@ embed_num_dims = 300
 max_seq_len = 500
 
 class_names = ['joy', 'fear', 'anger', 'sadness', 'neutral']
+
+dat = pd.read_csv('data_train.csv')
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(dat['text'].values)
+
 app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resources={
@@ -39,8 +44,6 @@ def predict():
       sent = data['comment'][i]
       cmt=sent
       message = clean_text(sent)
-      tokenizer = Tokenizer()
-      tokenizer.fit_on_texts(message)
       seq = tokenizer.texts_to_sequences(message)
       padded = pad_sequences(seq, maxlen=max_seq_len)
       predictions = loaded_model.predict(padded)
