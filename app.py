@@ -45,7 +45,7 @@ def predict():
     predictions = loaded_model.predict(padded)
     #output=class_names[np.argmax(predictions, axis=1)]
     pr=np.argmax(predictions)
-    res['prediction']=str(pr)
+    res['prediction']=str(predictions)
     return jsonify(res)
 if __name__ == "__main__":
     app.run(port = 5000, debug=True)
