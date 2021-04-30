@@ -34,6 +34,7 @@ def predict():
     
     # get data
     data = request.get_json(force=True)
+    res={}
     for i in (data['comment']):
       sent = data['comment'][i]
       cmt=sent
