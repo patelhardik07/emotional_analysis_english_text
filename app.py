@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 import re
-loaded_model = tf.keras.models.load_model('Lstm_english.h5')
+loaded_model = tf.keras.models.load_model('Lstm_english .h5')
 def clean_text(text):
   text = text.lower()
   new_text = re.sub('[^a-zA-z0-9\s]','',text)
