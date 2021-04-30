@@ -23,7 +23,7 @@ class_names = ['joy', 'fear', 'anger', 'sadness', 'neutral']
 
 dat = pd.read_csv('data_train.csv')
 tokenizer = Tokenizer()
-tokenizer.fit_on_texts(dat['text'].values)
+tokenizer.fit_on_texts(dat['Text'].values)
 
 app = Flask(__name__)
 CORS(app)
